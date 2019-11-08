@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery 문서구조 변경 </title>
+<style>
+		img{
+				width: 300px;
+				height:400px;
+		}
+</style>
+
+<script src='./js/jquery.js'></script>
+<script>
+		$(function(){
+			setInterval(function(){
+				$('img').first().appendTo('body');
+			//	$('img').attr('src', 'images/낭니2.png');
+				
+			}, 3000);
+		});
+</script>
+</head>
+<body>
+		<img src='images/낭니2.png' />
+		<img src='images/naeun.jpg' />
+		<img src='images/sister.jpg' />
+</body>
+</html>
