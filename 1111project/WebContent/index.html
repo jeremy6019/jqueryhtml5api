@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery에서의 jax</title>
+<!-- jquery 링크 설정  -->
+<script src='./js/jquery.js'></script>  
+<script>
+		// 스크립트를 위에 작성하는 경우 body의 내용을 
+		// 사용할 때는 window의 load이벤트 발생 이후에 
+		// 사용  
+		// jquery에서는 $(function(){ }) 안에 작성 
+		window.addEventListener('load', function(e){
+				var fileread = document.getElementById('fileread');
+				fileread.addEventListener('click', function(e){
+					//파일의 내용을 읽어서 출력 
+					//ajax 객체 만들고 전송할 url을 설정하고 
+					//send를 호출하고 상태가 변경될 때 호출되는 콜백메소드를 
+					//등록하는 코드를 별도로 작성해야 하지만 
+					//jquery에서는 한번의 메소드 호출로 모든 작업을 수행 
+				//	$('#disp').load('./resources/sample.txt');
+					
+					//html읽기 : 경로 뒤에 태그 이름을 설정하면 
+					//경로에서 태그에 해당하는 부분만 추출해서 출력 
+					$('#disp').load('./resources/sample.html p');
+					
+				});		
+				
+				var jsonread = document.getElementById('jsonread');
+				jsonread.addEventListener('click', function(e){				
+					$.ajax({
+						    url:'./resources/sample.json',
+						    datatype:'json',
+						    success:function(data){ 
+						    	//json 데이터의 경우는 data가 
+						    	//파싱을 수행한 결과 						  
+						    		for(idx=0; idx<data.length; idx+=1){
+						    			var obj = data[idx];
+						    		    alert(obj.team);
+						    		   
+						    		}
+						    }
+					});   
+				
+				});
+		});
+</script>
+</head>
+<body>
+
+		<div id='disp' ></div>
+		<input type='button'  id='fileread' 
+			value='텍스트 파일을 읽어서 출력' /><br/>
+		<input type='button'  id='jsonread' 
+			value='json데이터를  읽어서 출력' /><br/>
+			
+</body>
+</html>
